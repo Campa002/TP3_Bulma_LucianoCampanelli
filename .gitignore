@@ -1,0 +1,49 @@
+# Security Hub - Git Ignore File
+
+# Configuración local de PHP
+php/config_local.php
+
+# Archivos de base de datos
+*.sql.backup
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+error_log
+
+# Caché
+cache/
+temp/
+tmp/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencias
+vendor/
+node_modules/
+
+# Archivos generados
+*.pdf
+reportes/
+
+# Archivos de respaldo
+*~
+*.bak
+*.swp
+*.swo
+
+# Claves y secretos
+.env
+.env.local
+secrets.json

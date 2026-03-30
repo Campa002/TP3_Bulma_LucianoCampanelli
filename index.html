@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Hub - Gestión de Seguridad y Productividad</title>
+    
+    <!-- Bulma CSS Framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Logo -->
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+</head>
+<body class="has-navbar-fixed-top">
+    
+    <!-- NAVBAR -->
+    <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="index.html">
+                <i class="fas fa-shield-alt mr-2"></i>
+                <strong>Security Hub</strong>
+            </a>
+            
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#calendario">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Calendario
+                </a>
+                <a class="navbar-item" href="#validador">
+                    <i class="fas fa-key mr-2"></i>
+                    Validador
+                </a>
+                <a class="navbar-item" href="#reportes">
+                    <i class="fas fa-file-pdf mr-2"></i>
+                    Reportes
+                </a>
+            </div>
+            
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <button class="button is-light" id="btnToggleTheme">
+                            <span class="icon">
+                                <i class="fas fa-moon"></i>
+                            </span>
+                            <span>Tema Oscuro</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- HERO SECTION -->
+    <section class="hero is-primary is-medium">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-1">
+                    <i class="fas fa-shield-alt"></i>
+                    Security Hub
+                </h1>
+                <h2 class="subtitle is-4">
+                    Tu herramienta integral de productividad y seguridad digital
+                </h2>
+                <p class="is-size-5">
+                    Gestiona tu tiempo, valida contraseñas y genera reportes profesionales
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="section">
+        <div class="container">
+            
+            <!-- COLUMNS: Calendario y Validador -->
+            <div class="columns is-desktop">
+                
+                <!-- COLUMNA 1: CALENDARIO -->
+                <div class="column is-half" id="calendario">
+                    <div class="box">
+                        <h3 class="title is-4 has-text-centered">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            Calendario Interactivo
+                        </h3>
+                        
+                        <div class="calendar-controls has-text-centered mb-4">
+                            <button class="button is-info is-small" id="btnPrevMonth">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                            </button>
+                            
+                            <span class="title is-5 mx-4" id="currentMonth">Marzo 2026</span>
+                            
+                            <button class="button is-info is-small" id="btnNextMonth">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div id="calendarGrid" class="calendar-grid"></div>
+                        
+                        
+                        
+                        <!-- Notas del día seleccionado -->
+                        <div class="mt-4" id="dayNotesSection" style="display: none;">
+                            <h4 class="subtitle is-6 has-text-weight-bold">
+                                <i class="fas fa-sticky-note mr-2"></i>
+                                Notas del día <span id="selectedDayLabel"></span>:
+                            </h4>
+                            <div class="field">
+                                <div class="control">
+                                    <textarea class="textarea" id="dayNotes" placeholder="Escribe tus notas aquí..."></textarea>
+                                </div>
+                            </div>
+                            <button class="button is-primary is-small" id="btnSaveNote">
+                                <span class="icon">
+                                    <i class="fas fa-save"></i>
+                                </span>
+                                <span>Guardar Nota</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- COLUMNA 2: VALIDADOR DE CONTRASEÑAS -->
+                <div class="column is-half" id="validador">
+                    <div class="box">
+                        <h3 class="title is-4 has-text-centered">
+                            <i class="fas fa-key mr-2"></i>
+                            Validador de Contraseñas
+                        </h3>
+                        
+                        <div class="content">
+                            <p class="has-text-centered">
+                                Verifica la seguridad de tu contraseña en tiempo real
+                            </p>
+                        </div>
+                        
+                        <!-- Formulario de contraseña -->
+                        <div class="field">
+                            <label class="label">Ingresa tu contraseña:</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input 
+                                    class="input" 
+                                    type="password" 
+                                    id="passwordInput" 
+                                    placeholder="********"
+                                    autocomplete="off"
+                                >
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <span class="icon is-small is-right" id="togglePassword" style="pointer-events: all; cursor: pointer;">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Barra de progreso de seguridad -->
+                        <div class="field">
+                            <label class="label">Nivel de Seguridad:</label>
+                            <progress class="progress" id="securityProgress" value="0" max="100"></progress>
+                            <p class="help has-text-centered has-text-weight-bold" id="securityLevel">
+                                Sin evaluar
+                            </p>
+                        </div>
+                        
+                        <!-- Lista de requisitos -->
+                        <div class="content mt-4">
+                            <h5 class="subtitle is-6 has-text-weight-bold">Requisitos de Seguridad:</h5>
+                            <ul class="requirements-list">
+                                <li id="req-length" class="requirement-item">
+                                    <span class="icon has-text-grey">
+                                        <i class="fas fa-circle"></i>
+                                    </span>
+                                    <span>Mínimo 8 caracteres</span>
+                                </li>
+                                <li id="req-number" class="requirement-item">
+                                    <span class="icon has-text-grey">
+                                        <i class="fas fa-circle"></i>
+                                    </span>
+                                    <span>Contiene números (0-9)</span>
+                                </li>
+                                <li id="req-uppercase" class="requirement-item">
+                                    <span class="icon has-text-grey">
+                                        <i class="fas fa-circle"></i>
+                                    </span>
+                                    <span>Contiene mayúsculas (A-Z)</span>
+                                </li>
+                                <li id="req-special" class="requirement-item">
+                                    <span class="icon has-text-grey">
+                                        <i class="fas fa-circle"></i>
+                                    </span>
+                                    <span>Contiene caracteres especiales (!@#$%)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Botón de guardar -->
+                        <div class="field mt-5">
+                            <div class="control">
+                                <button class="button is-success is-fullwidth" id="btnSavePassword" disabled>
+                                    <span class="icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                    <span>Guardar Contraseña Segura</span>
+                                </button>
+                            </div>
+                            <p class="help has-text-centered" id="saveMessage"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE REPORTES PDF -->
+            <div class="columns is-centered mt-5" id="reportes">
+                <div class="column is-two-thirds">
+                    <div class="box has-background-info-light">
+                        <h3 class="title is-4 has-text-centered">
+                            <i class="fas fa-file-pdf mr-2"></i>
+                            Generador de Reportes
+                        </h3>
+                        
+                        <div class="content has-text-centered">
+                            <p class="is-size-5">
+                                Genera un reporte completo en PDF con toda la información del sistema
+                            </p>
+                            <ul class="conten has-text-left mt-4">
+                                <li><i class="fas fa-check mr-2 has-text-success"></i> Fecha y hora actual</li>
+                                <li><i class="fas fa-check mr-2 has-text-success"></i> Estado del calendario (mes visualizado)</li>
+                                <li><i class="fas fa-check mr-2 has-text-success"></i> Última contraseña analizada y su nivel de seguridad</li>
+                                <li><i class="fas fa-check mr-2 has-text-success"></i> Últimos 5 registros de contraseñas guardadas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="buttons is-centered mt-4">
+                            <button class="button is-danger is-medium" id="btnGeneratePDF">
+                                <span class="icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </span>
+                                <span>Generar Reporte Mensual</span>
+                            </button>
+                        </div>
+                        
+                        <div id="pdfMessage" class="notification is-hidden mt-4"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Security Hub</strong> - Proyecto Full Stack con Bulma, JavaScript, PHP y MySQL
+            </p>
+            <p>
+                <i class="fas fa-code"></i> Desarrollado para la materia Diseño e Implementación de Sitios Web Dinámicos
+            </p>
+            <p class="is-size-7 mt-2">
+                <i class="fas fa-calendar"></i> Marzo 2026 | 
+                <i class="fas fa-shield-alt"></i> Seguridad Digital | 
+                <i class="fas fa-clock"></i> Gestión del Tiempo
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Modal para eventos del calendario -->
+    <div class="modal" id="eventModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    <i class="fas fa-calendar-day mr-2"></i>
+                    Día seleccionado: <span id="modalDayTitle"></span>
+                </p>
+                <button class="delete" aria-label="close" id="closeModal"></button>
+            </header>
+            <section class="modal-card-body">
+                <div id="modalEventContent">
+                    <p>No hay eventos para este día.</p>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="modalCloseButton">Cerrar</button>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Scripts JavaScript -->
+    <script src="js/calendar.js"></script>
+    <script src="js/password-validator.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
